@@ -1,0 +1,461 @@
+/* ── SECTION WRAPPER ─────────────────────────────────────────── */
+.tp-section {
+  margin-bottom: clamp(20px, 5vw, 32px);
+  padding-bottom: clamp(20px, 4vw, 28px);
+  border-bottom: 1px solid var(--border-soft);
+  position: relative;
+}
+
+/* ── HEADER ──────────────────────────────────────────────────── */
+.tp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(14px, 3vw, 20px);
+}
+
+.tp-header-text {
+  flex: 1;
+}
+
+.tp-title-label {
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+[dir="rtl"] .tp-title-label {
+  text-align: right;
+}
+
+.tp-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+
+[dir="rtl"] .tp-subtitle {
+  text-align: right;
+}
+
+/* ── PREVIEW TOGGLE BUTTON ───────────────────────────────────── */
+.tp-preview-btn {
+  flex-shrink: 0;
+  width: auto;
+  min-width: 90px;
+  min-height: 34px;
+  padding: 6px 16px;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  background: var(--gradient-soft);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: var(--primary);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+  letter-spacing: 0.02em;
+}
+
+.tp-preview-btn:hover {
+  background: var(--gradient-glow, rgba(168, 85, 247, 0.18));
+  border-color: rgba(168, 85, 247, 0.45);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── SWATCH GRID ─────────────────────────────────────────────── */
+.tp-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.tp-swatch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px 8px;
+  min-width: 72px;
+  min-height: unset;
+  width: auto;
+  background: var(--glass);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) ease;
+  margin: 0;
+}
+
+.tp-swatch:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.tp-swatch--active {
+  border-color: var(--primary);
+  background: var(--gradient-soft);
+  box-shadow:
+    0 0 0 1px var(--primary),
+    0 4px 16px rgba(168, 85, 247, 0.25);
+}
+
+.tp-swatch--active:hover {
+  transform: none;
+}
+
+/* Four colour dots */
+.tp-swatch-dots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  width: 28px;
+  height: 28px;
+}
+
+.tp-dot {
+  border-radius: 3px;
+  display: block;
+}
+
+.tp-swatch-name {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[dir="rtl"] .tp-swatch-name {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.tp-swatch--active .tp-swatch-name {
+  color: var(--primary);
+}
+
+/* Active checkmark badge */
+.tp-swatch-check {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-card);
+  line-height: 1;
+}
+
+/* ── FLOATING PREVIEW PANEL ──────────────────────────────────── */
+.tp-preview-panel {
+  margin-top: clamp(20px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: tp-fade-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes tp-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tp-preview-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[dir="rtl"] .tp-preview-label {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* phone chrome */
+.tp-phone-frame {
+  position: relative;
+  width: clamp(200px, 52vw, 260px);
+  /* cap height so content never breaks the phone silhouette */
+  max-height: clamp(380px, 85vh, 520px);
+  border-radius: 36px;
+  background: #0b0b15;
+  border: 6px solid #222235;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 28px 64px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-phone-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 18px;
+  background: #0b0b15;
+  border-radius: 999px;
+  z-index: 30;
+  /* subtle inner shadow to blend with phone body */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.tp-phone-home-bar {
+  height: 5px;
+  width: 40%;
+  margin: 6px auto 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+
+/* ── INNER PHONE CARD ────────────────────────────────────────── */
+.tp-phone {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 30px;
+  margin-bottom: -21px;
+  /* hide scrollbar — purely decorative */
+  scrollbar-width: none;
+}
+.tp-phone::-webkit-scrollbar {
+  display: none;
+}
+
+.tp-cover {
+  height: clamp(80px, 25vw, 110px);
+  width: 100%;
+  position: relative;
+  /* push cover down so it doesn't hide behind the notch */
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
+.tp-cover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  /* proper gradient fade — avoids the brightness filter artifact */
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.28));
+  pointer-events: none;
+}
+
+.tp-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -68px;
+  position: relative;
+  z-index: 10;
+}
+
+.tp-avatar-img,
+.tp-avatar-placeholder {
+  width: clamp(52px, 13vw, 68px);
+  height: clamp(52px, 13vw, 68px);
+  border-radius: 50%;
+  border: 3px solid;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.tp-body {
+  padding: 4px clamp(10px, 3vw, 16px) 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tp-name {
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.tp-title {
+  font-size: 0.62rem;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.tp-save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  /* pill button, not a tiny circle */
+  width: auto;
+  min-width: 80px;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: default;
+  margin: 2px auto 10px;
+  white-space: nowrap;
+}
+
+.tp-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tp-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.tp-icon-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tp-contact-item span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: ltr;
+  text-align: left;
+}
+
+.tp-divider {
+  height: 1px;
+  margin: 2px 0;
+}
+
+.tp-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tp-link-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 600;
+}
+
+.tp-link-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tp-link-label {
+  flex: 1;
+}
+
+.tp-link-arrow {
+  font-size: 0.55rem;
+  flex-shrink: 0;
+}
+
+.tp-footer {
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 4px 0 15px;
+}
+
+.tp-preview-hint {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .tp-swatches {
+    gap: 6px;
+  }
+  .tp-swatch {
+    min-width: 60px;
+    padding: 8px 10px 6px;
+  }
+  .tp-swatch-dots {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tp-avatar-wrap {
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tp-avatar-wrap {
+    margin-top: -54px;
+  }
+}
